@@ -13,10 +13,10 @@ interface NoteFormProps extends Partial<INoteData> {
 
 const NoteForm: FC<NoteFormProps> = ({
   onSubmit,
-  onAddTag,
+        onAddTag,
   availableTags,
-  title = '',
-  tags = [],
+        title = '',
+        tags = [],
   markdown = '',
 }) => {
   const titleRef = useRef<InputRef>(null);
