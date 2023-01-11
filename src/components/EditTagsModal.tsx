@@ -14,7 +14,7 @@ const EditTagsModal: FC<EditTagsModalProps> = ({
   availableTags,
   show,
   onHide,
-      onDeleteTag,
+  onDeleteTag,
   onUpdateTag,
 }) => {
   return (

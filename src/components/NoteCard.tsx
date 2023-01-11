@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 import type { ISimpleNote } from '../utils/types';
 
-import classes from "./NoteCard.module.css";
+import classes from './NoteCard.module.css';
 
 interface NoteCardProps {
   note: ISimpleNote;
@@ -26,7 +26,7 @@ const NoteCard: FC<NoteCardProps> = ({ note }) => {
             >
               {note.tags.map(tag => (
                 <Tag
-                      color="#108ee9"
+                  color="#108ee9"
                   key={tag.id}
                   className="text-ellipsis whitespace-nowrap"
                 >
