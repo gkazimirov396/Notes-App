@@ -1,0 +1,12 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .decoration-none {
+    text-decoration: none;
+  }
+}
+
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans', sans-serif;
+}
