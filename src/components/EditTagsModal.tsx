@@ -18,10 +18,10 @@ const EditTagsModal: FC<EditTagsModalProps> = ({
   onUpdateTag,
 }) => {
   return (
-    <Modal open={show} onCancel={onHide} title="Edit Tags">
-      <Space size={2}>
+    <Modal open={show} onCancel={onHide} footer={null} title="Edit Tags">
+      <Space size="middle" wrap>
         {availableTags.map(tag => (
-          <Row gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]} key={tag.id}>
+          <Row className="gap-1" key={tag.id}>
             <Col>
               <Input
                 value={tag.label}
@@ -30,7 +30,7 @@ const EditTagsModal: FC<EditTagsModalProps> = ({
               />
             </Col>
             <Col xs={2}>
-              <Button danger onClick={() => onDeleteTag(tag.id)}>
+              <Button danger size="small" onClick={() => onDeleteTag(tag.id)}>
                 &times;
               </Button>
             </Col>

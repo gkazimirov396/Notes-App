@@ -1,33 +1,26 @@
-import { Card, Space, Tag } from 'antd';
+import { Card, Space, Tag, Typography } from 'antd';
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 import type { ISimpleNote } from '../utils/types';
 
 import classes from './NoteCard.module.css';
 
-interface NoteCardProps {
-  note: ISimpleNote;
-}
-
-const NoteCard: FC<NoteCardProps> = ({ note }) => {
+const NoteCard: FC<{ note: ISimpleNote }> = ({ note }) => {
   return (
     <Link to={`/${note.id}`}>
-      <Card className={`decoration-none h-full ${classes.card}`}>
+      <Card className={classes.card}>
         <Space
-          size="small"
-          className="flex h-full flex-col items-center justify-center"
+          direction="vertical"
+          align="center"
+          className="flex h-full justify-center"
         >
-          <span className="text-lg">{note.title}</span>
+          <Typography.Title level={5}>{note.title}</Typography.Title>
           {note.tags.length > 0 && (
-            <Space
-              size="small"
-              direction="horizontal"
-              className="flex flex-wrap items-center justify-center"
-            >
+            <Space wrap align="center" className="flex justify-center">
               {note.tags.map(tag => (
                 <Tag
-                  color="#108ee9"
                   key={tag.id}
+                  color="#108ee9"
                   className="text-ellipsis whitespace-nowrap"
                 >
                   {tag.label}

@@ -7,11 +7,7 @@ import {
 } from 'react-router-dom';
 import type { INote } from '../utils/types';
 
-interface NoteListProps {
-  notes: INote[];
-}
-
-const NoteLayout: FC<NoteListProps> = ({ notes }) => {
+const NoteLayout: FC<{ notes: INote[] }> = ({ notes }) => {
   const { noteId } = useParams();
   const note = notes.find(n => n.id === noteId);
 

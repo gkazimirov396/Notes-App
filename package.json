@@ -12,7 +12,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx}": "npm run lint",
+    "*.{ts,tsx,js,jsx}": "npm run lint && npm run format",
     "*.json": "npm run format"
   },
   "dependencies": {
@@ -20,7 +20,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-haiku": "^2.0.3",
-    "react-markdown": "^8.0.4",
     "react-router-dom": "^6.6.1",
     "react-select": "^5.7.0",
     "uuid": "^9.0.0"

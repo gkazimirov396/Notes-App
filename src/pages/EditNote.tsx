@@ -1,3 +1,4 @@
+import { Typography } from 'antd';
 import type { FC } from 'react';
 import type { INoteData, ITag } from '../utils/types';
 import NoteForm from './../components/NoteForm';
@@ -13,8 +14,10 @@ const EditNote: FC<EditNoteProps> = ({ onSubmit, availableTags, onAddTag }) => {
   const note = useNote();
 
   return (
-    <section className="mx-14 w-full">
-      <h1 className="mb-4">Edit Note</h1>
+    <section className="max-w-4xl">
+      <Typography.Title level={3} className="mb-4">
+        Edit Note
+      </Typography.Title>
       <NoteForm
         title={note.title}
         markdown={note.markdown}

@@ -60,7 +60,7 @@ const App = () => {
   };
 
   return (
-    <main className="container my-10 w-screen">
+    <main className="container my-10">
       <Routes>
         <Route
           path="/"

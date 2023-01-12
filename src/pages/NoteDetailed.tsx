@@ -1,6 +1,5 @@
-import { Button, Col, Row, Space, Tag } from 'antd';
+import { Button, Col, Row, Space, Tag, Typography } from 'antd';
 import type { FC } from 'react';
-import ReactMarkDown from 'react-markdown';
 import { Link } from 'react-router-dom';
 import { useNote } from './../components/NoteLayout';
 
@@ -12,19 +11,19 @@ const NoteDetailed: FC<NoteDetailedProps> = ({ onDeleteNote }) => {
   const note = useNote();
 
   return (
-    <section className="mx-14 w-full">
+    <section>
       <Row
         gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}
         className="mb-4 items-center justify-between"
       >
-        <Col sm={10} md={8} lg={9} xl={8}>
-          <h1>{note.title}</h1>
+        <Col sm={10} md={6} lg={7} xl={8}>
+          <Typography.Title level={3}>{note.title}</Typography.Title>
           {note.tags.length > 0 && (
-            <Space size="small" direction="horizontal" wrap>
+            <Space wrap>
               {note.tags.map(tag => (
                 <Tag
-                  color="#108ee9"
                   key={tag.id}
+                  color="#108ee9"
                   className="text-ellipsis whitespace-nowrap"
                 >
                   {tag.label}
@@ -33,21 +32,21 @@ const NoteDetailed: FC<NoteDetailedProps> = ({ onDeleteNote }) => {
             </Space>
           )}
         </Col>
-        <Col xs={4} sm={10} md={8} lg={9} xl={8}>
-          <Space size={8} direction="horizontal">
+        <Col xs={12} sm={2} md={6} lg={7} xl={8}>
+          <Space>
             <Link to={`/${note.id}/edit`}>
               <Button type="primary">Edit</Button>
             </Link>
             <Button danger onClick={() => onDeleteNote(note.id)}>
               Delete
             </Button>
-            <Link to="/">
+            <Link to="..">
               <Button>Go Back</Button>
             </Link>
           </Space>
         </Col>
       </Row>
-      <ReactMarkDown>{note.markdown}</ReactMarkDown>
+      <Typography.Paragraph strong>{note.markdown}</Typography.Paragraph>
     </section>
   );
 };

@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, Space } from 'antd';
+import { Button, Col, Form, Input, Row, Space, Typography } from 'antd';
 import { FC, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactSelect from 'react-select';
@@ -20,34 +20,34 @@ const NoteList: FC<NoteListProps> = ({
   onUpdateTag,
 }) => {
   const [selectedTags, setSelectedTags] = useState<ITag[]>([]);
-  const [title, setTitle] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [form] = Form.useForm<{ title: string }>();
+  const title = Form.useWatch('title', form);
 
   const filteredNotes = useMemo(
     () =>
       notes.filter(
         note =>
-          (title === '' ||
-            note.title.toLowerCase().includes(title.toLowerCase())) &&
-          (selectedTags.length === 0 ||
-            selectedTags.every(tag =>
-              note.tags.some(noteTag => noteTag.id === tag.id),
-            )),
+          note.title.toLowerCase().includes((title || '').toLowerCase()) &&
+          selectedTags.every(tag =>
+            note.tags.some(noteTag => noteTag.id === tag.id),
+          ),
       ),
     [title, selectedTags, notes],
   );
 
   return (
-    <section className="mx-56 w-full">
+    <section className="mx-3 md:mx-48 md:w-full">
       <Row
         gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}
         className="mb-4 flex items-center justify-between"
+        wrap
       >
         <Col sm={10} md={8} lg={5} xl={13}>
-          <h1 className="text-3xl">Notes</h1>
+          <Typography.Title level={2}>Notes</Typography.Title>
         </Col>
-        <Col sm={10} md={8} lg={9} xl={8}>
-          <Space size="small" direction="horizontal">
+        <Col md={8} lg={9} xl={8}>
+          <Space>
             <Link to="/new-note">
               <Button type="primary">Create</Button>
             </Link>
@@ -56,19 +56,14 @@ const NoteList: FC<NoteListProps> = ({
         </Col>
       </Row>
 
-      <Form requiredMark={false} colon={false}>
+      <Form requiredMark={false} colon={false} form={form}>
         <Row gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]} className="mb-4">
-          <Col className="w-auto">
+          <Col>
             <Form.Item label="Title" name="title">
-              <Input
-                className="h-[38px] w-80"
-                size="large"
-                value={title}
-                onChange={e => setTitle(e.target.value)}
-              />
+              <Input className="h-[38px] w-80" size="large" />
             </Form.Item>
           </Col>
-          <Col className="w-max">
+          <Col>
             <Form.Item label="Tags" name="tags">
               <ReactSelect
                 className="w-80"
@@ -94,10 +89,13 @@ const NoteList: FC<NoteListProps> = ({
           </Col>
         </Row>
       </Form>
-      {/* className="gap-3" */}
-      <Row gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
+
+      <Row
+        gutter={[16, { xs: 8, sm: 16, md: 24, lg: 34 }]}
+        className="flex-col md:flex-row"
+      >
         {filteredNotes.map(note => (
-          <Col xs={1} sm={2} lg={3} xl={5} key={note.id}>
+          <Col xs={8} lg={6} xl={5} key={note.id}>
             <NoteCard note={note} />
           </Col>
         ))}

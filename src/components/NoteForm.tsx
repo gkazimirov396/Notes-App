@@ -1,5 +1,5 @@
-import { Button, Col, Form, Input, InputRef, Row, Space } from 'antd';
-import { FC, useRef, useState } from 'react';
+import { Button, Col, Form, Input, Row, Space } from 'antd';
+import { FC, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CreatableReactSelect from 'react-select/creatable';
 import { v4 as uuid } from 'uuid';
@@ -11,6 +11,11 @@ interface NoteFormProps extends Partial<INoteData> {
   availableTags: ITag[];
 }
 
+interface NoteFormData {
+  title: string;
+  markdown: string;
+}
+
 const NoteForm: FC<NoteFormProps> = ({
   onSubmit,
   onAddTag,
@@ -19,16 +24,14 @@ const NoteForm: FC<NoteFormProps> = ({
   tags = [],
   markdown = '',
 }) => {
-  const titleRef = useRef<InputRef>(null);
-  const markDownRef = useRef<HTMLTextAreaElement>(null);
-  const [form] = Form.useForm();
   const [selectedTags, setSelectedTags] = useState<ITag[]>(tags);
+  const [form] = Form.useForm<NoteFormData>();
   const navigate = useNavigate();
 
   const submitHandler = () => {
+    const formData = form.getFieldsValue();
     onSubmit({
-      title: titleRef.current!.input!.value,
-      markdown: markDownRef.current!.value,
+      ...formData,
       tags: selectedTags,
     });
     navigate(-1);
@@ -40,13 +43,16 @@ const NoteForm: FC<NoteFormProps> = ({
       layout="vertical"
       requiredMark={false}
       form={form}
+      initialValues={{
+        title,
+        markdown,
+      }}
     >
       <Row gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
         <Col>
           <Form.Item
             label="Title"
             name="title"
-            className="w-80"
             rules={[
               {
                 required: true,
@@ -54,12 +60,7 @@ const NoteForm: FC<NoteFormProps> = ({
               },
             ]}
           >
-            <Input
-              className="h-[38px]"
-              size="large"
-              ref={titleRef}
-              defaultValue={title}
-            />
+            <Input className="h-[38px] w-80" size="large" />
           </Form.Item>
         </Col>
         <Col>
@@ -86,7 +87,7 @@ const NoteForm: FC<NoteFormProps> = ({
               onCreateOption={label => {
                 const newTag = { label, id: uuid() };
                 onAddTag(newTag);
-                setSelectedTags([...availableTags, newTag]);
+                setSelectedTags(prevTags => [...prevTags, newTag]);
               }}
             />
           </Form.Item>
@@ -102,14 +103,14 @@ const NoteForm: FC<NoteFormProps> = ({
           },
         ]}
       >
-        <Input.TextArea rows={15} ref={markDownRef} defaultValue={markdown} />
+        <Input.TextArea rows={15} />
       </Form.Item>
-      <Space direction="horizontal" size="middle" className="justify-end">
+      <Space size="middle" className="justify-end">
         <Button htmlType="submit" type="primary">
           Save
         </Button>
         <Link to="..">
-          <Button htmlType="button">Cancel</Button>
+          <Button>Cancel</Button>
         </Link>
       </Space>
     </Form>
