@@ -103,7 +103,7 @@ const NoteForm: FC<NoteFormProps> = ({
           },
         ]}
       >
-        <Input.TextArea rows={15} />
+        <Input.TextArea showCount rows={15} maxLength={150} />
       </Form.Item>
       <Space size="middle" className="justify-end">
         <Button htmlType="submit" type="primary">
