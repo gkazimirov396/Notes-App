@@ -17,7 +17,14 @@
     "quotes": ["warn", "single"],
     "jsx-quotes": ["warn", "prefer-double"],
     "indent": ["warn", 2],
-    "comma-dangle": ["warn", "always-multiline"],
+    "comma-dangle": [
+      "warn",
+      {
+        "arrays": "always-multiline",
+        "objects": "only-multiline",
+        "imports": "only-multiline"
+      }
+    ],
     "semi": ["warn", "always"],
     "prefer-const": "error",
     "no-var": "error",

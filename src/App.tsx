@@ -19,7 +19,7 @@ const App = () => {
         ...note,
         tags: tags?.filter(tag => note.tagIds.includes(tag.id)),
       })),
-    [notes, tags],
+    [notes, tags]
   );
 
   const createNoteHandler = ({ tags, ...data }: INoteData) => {

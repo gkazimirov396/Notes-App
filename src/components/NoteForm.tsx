@@ -81,7 +81,7 @@ const NoteForm: FC<NoteFormProps> = ({
                   tags.map(tag => ({
                     label: tag.label,
                     id: tag.value,
-                  })),
+                  }))
                 );
               }}
               onCreateOption={label => {

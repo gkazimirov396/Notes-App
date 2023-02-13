@@ -30,10 +30,10 @@ const NoteList: FC<NoteListProps> = ({
         note =>
           note.title.toLowerCase().includes((title || '').toLowerCase()) &&
           selectedTags.every(tag =>
-            note.tags.some(noteTag => noteTag.id === tag.id),
-          ),
+            note.tags.some(noteTag => noteTag.id === tag.id)
+          )
       ),
-    [title, selectedTags, notes],
+    [title, selectedTags, notes]
   );
 
   return (
@@ -81,7 +81,7 @@ const NoteList: FC<NoteListProps> = ({
                     tags.map(tag => ({
                       label: tag.label,
                       id: tag.value,
-                    })),
+                    }))
                   );
                 }}
               />
