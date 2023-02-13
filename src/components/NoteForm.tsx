@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CreatableReactSelect from 'react-select/creatable';
 import { v4 as uuid } from 'uuid';
+
 import type { INoteData, ITag } from '../utils/types';
 
 interface NoteFormProps extends Partial<INoteData> {
@@ -28,8 +29,7 @@ const NoteForm: FC<NoteFormProps> = ({
   const [form] = Form.useForm<NoteFormData>();
   const navigate = useNavigate();
 
-  const submitHandler = () => {
-    const formData = form.getFieldsValue();
+  const submitHandler = (formData: NoteFormData) => {
     onSubmit({
       ...formData,
       tags: selectedTags,

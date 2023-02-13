@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useLocalStorage } from 'react-haiku';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+
 import NoteLayout from './components/NoteLayout';
 import EditNote from './pages/EditNote';
 import NewNote from './pages/NewNote';

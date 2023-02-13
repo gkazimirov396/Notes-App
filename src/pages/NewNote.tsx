@@ -1,5 +1,6 @@
 import { Typography } from 'antd';
 import type { FC } from 'react';
+
 import type { INoteData, ITag } from '../utils/types';
 import NoteForm from './../components/NoteForm';
 

@@ -1,6 +1,7 @@
 import { Button, Col, Row, Space, Tag, Typography } from 'antd';
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
+
 import { useNote } from './../components/NoteLayout';
 
 interface NoteDetailedProps {

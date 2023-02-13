@@ -5,6 +5,7 @@ import {
   useOutletContext,
   useParams,
 } from 'react-router-dom';
+
 import type { INote } from '../utils/types';
 
 const NoteLayout: FC<{ notes: INote[] }> = ({ notes }) => {

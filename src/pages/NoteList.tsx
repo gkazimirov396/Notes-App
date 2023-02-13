@@ -2,6 +2,7 @@ import { Button, Col, Form, Input, Row, Space, Typography } from 'antd';
 import { FC, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactSelect from 'react-select';
+
 import EditTagsModal from '../components/EditTagsModal';
 import type { ISimpleNote, ITag } from '../utils/types';
 import NoteCard from './../components/NoteCard';

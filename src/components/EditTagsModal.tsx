@@ -1,5 +1,6 @@
 import { Button, Col, Input, Modal, Row, Space } from 'antd';
 import type { FC } from 'react';
+
 import type { ITag } from '../utils/types';
 
 interface EditTagsModalProps {
@@ -19,7 +20,7 @@ const EditTagsModal: FC<EditTagsModalProps> = ({
 }) => {
   return (
     <Modal open={show} onCancel={onHide} footer={null} title="Edit Tags">
-      <Space size="middle" wrap>
+      <Space size={[10, 16]} wrap>
         {availableTags.map(tag => (
           <Row className="gap-1" key={tag.id}>
             <Col>
