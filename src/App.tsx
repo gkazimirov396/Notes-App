@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+
 import { useLocalStorage } from 'react-haiku';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
@@ -8,6 +9,7 @@ import EditNote from './pages/EditNote';
 import NewNote from './pages/NewNote';
 import NoteDetailed from './pages/NoteDetailed';
 import NoteList from './pages/NoteList';
+
 import type { INoteData, IRawNote, ITag } from './utils/types';
 
 const App = () => {

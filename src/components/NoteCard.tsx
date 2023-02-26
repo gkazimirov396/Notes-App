@@ -1,5 +1,6 @@
-import { Card, Space, Tag, Typography } from 'antd';
 import type { FC } from 'react';
+
+import { Card, Space, Tag, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 
 import type { ISimpleNote } from '../utils/types';

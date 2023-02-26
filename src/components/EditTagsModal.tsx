@@ -1,5 +1,6 @@
-import { Button, Col, Input, Modal, Row, Space } from 'antd';
 import type { FC } from 'react';
+
+import { Button, Col, Input, Modal, Row, Space } from 'antd';
 
 import type { ITag } from '../utils/types';
 

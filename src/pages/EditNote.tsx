@@ -1,9 +1,11 @@
-import { Typography } from 'antd';
 import type { FC } from 'react';
 
-import type { INoteData, ITag } from '../utils/types';
+import { Typography } from 'antd';
+
 import NoteForm from './../components/NoteForm';
 import { useNote } from './../components/NoteLayout';
+
+import type { INoteData, ITag } from '../utils/types';
 
 interface EditNoteProps {
   onSubmit: (id: string, data: INoteData) => void;
