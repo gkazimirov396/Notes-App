@@ -24,7 +24,7 @@ Your app is ready to be deployed!
 
 ### `npm run preview`
 
-Starts a production server on [http://localhost:5173](http://localhost:5173),\
+Starts a production server on [http://localhost:4173](http://localhost:4173),\
 and previews how your project will look.
 
 ## Learn More
