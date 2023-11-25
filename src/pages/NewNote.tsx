@@ -2,9 +2,10 @@ import type { FC } from 'react';
 
 import { Typography } from 'antd';
 
-import NoteForm from './../components/NoteForm';
+import NoteForm from '../components/NoteForm';
 
-import type { INoteData, ITag } from '../utils/types';
+import type { INoteData } from '../types/note';
+import type { ITag } from '../types/tag';
 
 interface NewNoteProps {
   onSubmit: (data: INoteData) => void;

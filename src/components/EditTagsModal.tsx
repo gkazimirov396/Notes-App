@@ -2,7 +2,7 @@ import type { FC } from 'react';
 
 import { Button, Col, Input, Modal, Row, Space } from 'antd';
 
-import type { ITag } from '../utils/types';
+import type { ITag } from '../types/tag';
 
 interface EditTagsModalProps {
   availableTags: ITag[];

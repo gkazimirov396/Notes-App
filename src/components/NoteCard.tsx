@@ -3,14 +3,14 @@ import type { FC } from 'react';
 import { Card, Space, Tag, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 
-import type { ISimpleNote } from '../utils/types';
+import type { ISimpleNote } from '../types/note';
 
 import classes from './NoteCard.module.css';
 
 const NoteCard: FC<{ note: ISimpleNote }> = ({ note }) => {
   return (
     <Link to={`/${note.id}`}>
-      <Card className={classes.card}>
+      <Card className={classes['card'] ?? ''}>
         <Space
           direction="vertical"
           align="center"

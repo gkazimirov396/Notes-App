@@ -7,7 +7,8 @@ import ReactSelect from 'react-select';
 import EditTagsModal from '../components/EditTagsModal';
 import NoteCard from './../components/NoteCard';
 
-import type { ISimpleNote, ITag } from '../utils/types';
+import type { ISimpleNote } from '../types/note';
+import type { ITag } from '../types/tag';
 
 interface NoteListProps {
   notes: ISimpleNote[];

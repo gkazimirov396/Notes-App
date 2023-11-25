@@ -7,7 +7,7 @@ import {
   useParams,
 } from 'react-router-dom';
 
-import type { INote } from '../utils/types';
+import type { INote } from '../types/note';
 
 const NoteLayout: FC<{ notes: INote[] }> = ({ notes }) => {
   const { noteId } = useParams();

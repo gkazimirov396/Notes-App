@@ -1,7 +1,4 @@
-export interface ITag {
-  id: string;
-  label: string;
-}
+import type { ITag } from './tag';
 
 export interface IRawNoteData {
   title: string;

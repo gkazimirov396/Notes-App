@@ -5,7 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import CreatableReactSelect from 'react-select/creatable';
 import { v4 as uuid } from 'uuid';
 
-import type { INoteData, ITag } from '../utils/types';
+import type { INoteData } from '../types/note';
+import type { ITag } from '../types/tag';
 
 interface NoteFormProps extends Partial<INoteData> {
   onSubmit: (data: INoteData) => void;
