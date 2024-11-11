@@ -2,23 +2,16 @@ import type { FC } from 'react';
 
 import { Button, Col, Input, Modal, Row, Space } from 'antd';
 
-import type { ITag } from '../types/tag';
+import { useTagsStore } from '../store/tag';
 
 interface EditTagsModalProps {
-  availableTags: ITag[];
   show: boolean;
   onHide: () => void;
-  onDeleteTag: (id: string) => void;
-  onUpdateTag: (id: string, label: string) => void;
 }
 
-const EditTagsModal: FC<EditTagsModalProps> = ({
-  availableTags,
-  show,
-  onHide,
-  onDeleteTag,
-  onUpdateTag,
-}) => {
+const EditTagsModal: FC<EditTagsModalProps> = ({ show, onHide }) => {
+  const { tags: availableTags, deleteTag, updateTag } = useTagsStore();
+
   return (
     <Modal open={show} onCancel={onHide} footer={null} title="Edit Tags">
       <Space size={[10, 16]} wrap>
@@ -28,11 +21,12 @@ const EditTagsModal: FC<EditTagsModalProps> = ({
               <Input
                 value={tag.label}
                 size="small"
-                onChange={e => onUpdateTag(tag.id, e.target.value)}
+                onChange={e => updateTag(tag.id, e.target.value)}
               />
             </Col>
+
             <Col xs={2}>
-              <Button danger size="small" onClick={() => onDeleteTag(tag.id)}>
+              <Button danger size="small" onClick={() => deleteTag(tag.id)}>
                 &times;
               </Button>
             </Col>

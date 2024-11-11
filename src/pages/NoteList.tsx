@@ -7,24 +7,19 @@ import ReactSelect from 'react-select';
 import EditTagsModal from '../components/EditTagsModal';
 import NoteCard from './../components/NoteCard';
 
-import type { ISimpleNote } from '../types/note';
+import { useNotesWithTags } from '../hooks/useNotesWithTags';
+
+import { useTagsStore } from '../store/tag';
+
 import type { ITag } from '../types/tag';
 
-interface NoteListProps {
-  notes: ISimpleNote[];
-  availableTags: ITag[];
-  onDeleteTag: (id: string) => void;
-  onUpdateTag: (id: string, label: string) => void;
-}
+const NoteList: FC = () => {
+  const notes = useNotesWithTags();
+  const availableTags = useTagsStore(state => state.tags);
 
-const NoteList: FC<NoteListProps> = ({
-  availableTags,
-  notes,
-  onDeleteTag,
-  onUpdateTag,
-}) => {
   const [selectedTags, setSelectedTags] = useState<ITag[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [form] = Form.useForm<{ title: string }>();
   const title = Form.useWatch('title', form);
 
@@ -50,11 +45,13 @@ const NoteList: FC<NoteListProps> = ({
         <Col sm={10} md={8} lg={5} xl={13}>
           <Typography.Title level={2}>Notes</Typography.Title>
         </Col>
+
         <Col md={8} lg={9} xl={8}>
           <Space>
             <Link to="/new-note">
               <Button type="primary">Create</Button>
             </Link>
+
             <Button onClick={() => setIsModalOpen(true)}>Edit Tags</Button>
           </Space>
         </Col>
@@ -67,6 +64,7 @@ const NoteList: FC<NoteListProps> = ({
               <Input className="h-[38px] w-80" size="large" />
             </Form.Item>
           </Col>
+
           <Col>
             <Form.Item label="Tags" name="tags">
               <ReactSelect
@@ -104,13 +102,8 @@ const NoteList: FC<NoteListProps> = ({
           </Col>
         ))}
       </Row>
-      <EditTagsModal
-        onDeleteTag={onDeleteTag}
-        onUpdateTag={onUpdateTag}
-        availableTags={availableTags}
-        show={isModalOpen}
-        onHide={() => setIsModalOpen(false)}
-      />
+
+      <EditTagsModal show={isModalOpen} onHide={() => setIsModalOpen(false)} />
     </section>
   );
 };

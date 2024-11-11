@@ -5,13 +5,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import CreatableReactSelect from 'react-select/creatable';
 import { v4 as uuid } from 'uuid';
 
+import { useTagsStore } from '../store/tag';
+
 import type { INoteData } from '../types/note';
 import type { ITag } from '../types/tag';
 
 interface NoteFormProps extends Partial<INoteData> {
   onSubmit: (data: INoteData) => void;
-  onAddTag: (newTag: ITag) => void;
-  availableTags: ITag[];
 }
 
 interface NoteFormData {
@@ -21,13 +21,15 @@ interface NoteFormData {
 
 const NoteForm: FC<NoteFormProps> = ({
   onSubmit,
-  onAddTag,
-  availableTags,
   title = '',
   tags = [],
   markdown = '',
 }) => {
+  const availableTags = useTagsStore(state => state.tags);
+  const addTag = useTagsStore(state => state.addTag);
+
   const [selectedTags, setSelectedTags] = useState<ITag[]>(tags);
+
   const [form] = Form.useForm<NoteFormData>();
   const navigate = useNavigate();
 
@@ -36,6 +38,7 @@ const NoteForm: FC<NoteFormProps> = ({
       ...formData,
       tags: selectedTags,
     });
+
     navigate(-1);
   };
 
@@ -88,13 +91,15 @@ const NoteForm: FC<NoteFormProps> = ({
               }}
               onCreateOption={label => {
                 const newTag = { label, id: uuid() };
-                onAddTag(newTag);
+
+                addTag(newTag);
                 setSelectedTags(prevTags => [...prevTags, newTag]);
               }}
             />
           </Form.Item>
         </Col>
       </Row>
+
       <Form.Item
         label="Body"
         name="markdown"
@@ -107,6 +112,7 @@ const NoteForm: FC<NoteFormProps> = ({
       >
         <Input.TextArea showCount rows={15} maxLength={150} />
       </Form.Item>
+
       <Space size="middle" className="justify-end">
         <Button htmlType="submit" type="primary">
           Save
