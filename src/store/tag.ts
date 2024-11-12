@@ -25,6 +25,6 @@ export const useTagsStore = create<TagStore>()(
           }),
         })),
     }),
-    { name: 'TAGS' }
+    { name: 'TAGS', version: 1 }
   )
 );

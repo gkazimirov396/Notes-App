@@ -35,6 +35,6 @@ export const useNotesStore = create<NoteStore>()(
       deleteNote: id =>
         set(state => ({ notes: state.notes.filter(note => note.id !== id) })),
     }),
-    { name: 'NOTES' }
+    { name: 'NOTES', version: 1 }
   )
 );
