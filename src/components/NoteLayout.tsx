@@ -7,6 +7,8 @@ import {
 
 import { useNotesWithTags } from '../hooks/useNotesWithTags';
 
+import { RoutePath } from '../router/path';
+
 import type { INote } from '../types/note';
 
 const NoteLayout = () => {
@@ -15,7 +17,15 @@ const NoteLayout = () => {
   const notes = useNotesWithTags();
   const note = notes.find(n => n.id === noteId);
 
-  return <>{!note ? <Navigate to="/" replace /> : <Outlet context={note} />}</>;
+  return (
+    <>
+      {!note ? (
+        <Navigate to={RoutePath.HOME} replace />
+      ) : (
+        <Outlet context={note} />
+      )}
+    </>
+  );
 };
 
 export const useNote = () => useOutletContext<INote>();

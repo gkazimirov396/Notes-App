@@ -117,6 +117,7 @@ const NoteForm: FC<NoteFormProps> = ({
         <Button htmlType="submit" type="primary">
           Save
         </Button>
+
         <Link to="..">
           <Button>Cancel</Button>
         </Link>

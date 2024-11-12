@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 
 import { useNote } from '../components/NoteLayout';
 
+import { RoutePath } from '../router/path';
+
 import { useNotesStore } from '../store/note';
 
 const NoteDetailed: FC = () => {
@@ -38,7 +40,7 @@ const NoteDetailed: FC = () => {
 
         <Col xs={12} sm={2} md={6} lg={7} xl={8}>
           <Space>
-            <Link to={`/${note.id}/edit`}>
+            <Link to={`/${note.id}/${RoutePath.NOTE_DETAILED_EDIT}`}>
               <Button type="primary">Edit</Button>
             </Link>
 

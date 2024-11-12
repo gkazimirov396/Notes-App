@@ -11,6 +11,8 @@ import { useNotesWithTags } from '../hooks/useNotesWithTags';
 
 import { useTagsStore } from '../store/tag';
 
+import { RoutePath } from '../router/path';
+
 import type { ITag } from '../types/tag';
 
 const NoteList: FC = () => {
@@ -48,7 +50,7 @@ const NoteList: FC = () => {
 
         <Col md={8} lg={9} xl={8}>
           <Space>
-            <Link to="/new-note">
+            <Link to={RoutePath.NEW_NOTE}>
               <Button type="primary">Create</Button>
             </Link>
 
