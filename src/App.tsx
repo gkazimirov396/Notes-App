@@ -21,7 +21,10 @@ const App = () => {
           <Route path={RoutePath.NOTE_DETAILED_EDIT} element={<EditNote />} />
         </Route>
 
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route
+          path={RoutePath.NOT_FOUND}
+          element={<Navigate to={RoutePath.HOME} />}
+        />
       </Routes>
     </main>
   );
